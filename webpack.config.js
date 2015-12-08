@@ -62,7 +62,7 @@ module.exports = {
       'angular2/http'
     ],
     'app': [
-      './src/app/bootstrap'
+      './src/app/bootstrap.js'
     ]
   },
 
@@ -76,7 +76,7 @@ module.exports = {
 
   resolve: {
     root: __dirname,
-    extensions: ['','.ts','.js','.json'],
+    extensions: ['','.js','.json'],
     alias: {
       'rx': '@reactivex/rxjs'
     }
@@ -89,25 +89,11 @@ module.exports = {
 
       // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw' },
+      
+      { test: /\.js$/,   loader: 'babel' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw' },
-
-      // Support for .ts files.
-      { test: /\.ts$/,    loader: 'ts',
-        query: {
-          'ignoreDiagnostics': [
-            // 2300, // 2300 -> Duplicate identifier
-            // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
-          ]
-        },
-        exclude: [
-          /\.min\.js$/,
-          /\.spec\.ts$/,
-          /\.e2e\.ts$/,
-          /node_modules/
-        ]
-      }
+      { test: /\.html$/,  loader: 'raw' }
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
