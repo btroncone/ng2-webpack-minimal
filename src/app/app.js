@@ -18,7 +18,8 @@ import { Inject } from 'angular2/angular2';
 })
 export class App {
   
-  constructor(@Inject('ngRedux') ngRedux) {
+  constructor(@Inject('ngRedux') ngRedux, @Inject('reduxDevTools') reduxDevTools) {
+    reduxDevTools.start(ngRedux);
     this.unsubscribe = ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
   }
 
@@ -29,8 +30,7 @@ export class App {
   mapStateToThis(state) {
     return {
       counter: state.counter
-    };
-    
+    }; 
   }
 
   mapDispatchToThis(dispatch) {
